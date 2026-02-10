@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Ultra&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Embedded CSS -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-box {
+            background: #ffffff;
+            padding: 35px 30px;
+            max-width: 1100px;
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .title {
+            font-family: 'Anton', sans-serif;
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .profile p {
+            font-size: 15px;
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+
+        .form-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form-box input {
+            height: 45px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .form-box input:focus {
+            outline: none;
+            border-color: #28a745;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.4);
+        }
+
+        .form-box button {
+            grid-column: 1 / -1;
+            height: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #eafaf1;
+            border-left: 5px solid #28a745;
+            color: #155724;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 576px) {
+            .title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container main-box text-center">
+
+    <h1 class="title">🏠 House Price Prediction</h1>
+
+    <!-- Profile Section -->
+    <div class="profile">
+        <p>By Kareti Haritha</p>
+    </div>
+
+    <!-- Prediction Form -->
+    <form action="/predict" method="POST" class="form-box">
+
+        <input type="number" name="bedroom" placeholder="Bedrooms" required>
+        <input type="number" name="bathroom" placeholder="Bathrooms" required>
+        <input type="number" name="sqft_living_" placeholder="Sqft Living" required>
+        <input type="number" name="sqft_lot_" placeholder="Sqft Lot" required>
+        <input type="number" name="floors_" placeholder="Floors" required>
+        <input type="number" name="waterfront_" placeholder="Waterfront (0/1)" required>
+        <input type="number" name="view_" placeholder="View Rating" required>
+        <input type="number" name="condition_" placeholder="Condition" required>
+        <input type="number" name="sqft_above_" placeholder="Sqft Above" required>
+        <input type="number" name="sqft_basement_" placeholder="Sqft Basement" required>
+        <input type="number" name="yr_built_" placeholder="Year Built" required>
+        <input type="number" name="yr_renovated_" placeholder="Year Renovated" required>
+        <input type="number" name="city_" placeholder="City Code" required>
+        <input type="number" name="country_" placeholder="Country Code" required>
+
+        <button type="submit" class="btn btn-success btn-block">
+            Predict Price
+        </button>
+    </form>
+
+    <!-- Output -->
+    {% if prediction_text %}
+        <h3 class="result">Predicted Price: {{ prediction_text }}</h3>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
